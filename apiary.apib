@@ -1,0 +1,149 @@
+FORMAT: 1A
+HOST: https://api.xilnex.com/
+
+# Core Data API V1 - Apps
+## Scope and Concepts
+Web bytes provides a complete API accessible via HTTPS. This API is the best 
+way to intergrate website, e-commerce, server, mobile written in any programming 
+language such as JavaScript, Ruby, Swift, Object-C. C#, Java, php, etc.
+
+## Setup for REST API
+For using this API you need send authenticated HTTP requests. Exists several 
+way to do this:
+* Send a HTTP header with include `Token: {api_token}` and `Dkey: {Dkey}`
+, where `{api_token}` is your API token and `{dkey}` is your private key
+![name](https://s15.postimg.org/oagoiyr7f/Screenshot_1.png)
+
+
+Your API token and Dkey you can request from our comapny **api@webbytes.com.my**
+by providing below
+information in your email
+* Company Name:
+* Name:
+* Purpose of the API:
+    * Purpose:
+    * Request action: `Read, Write, Update, Delete`
+* Super admin email address:
+* Api e-mail address :
+* Api e-mail password : 
+
+API e-mail address and password `You need to create a user on xilnex application, and
+specific for API purpose only`
+
+## Basic Usage
+### Allowed HTTPs requests:
+* `POST` - To create resource
+* `PUT` - To update resource
+* `GET` - Get a resource or list of resources
+* `DELETE` - To delete resource
+
+### Description Of Usual Server Responses:
+* 200 `ok` - the request was successful
+    * `ok` 
+        * `true` mean success to process 
+    * `status` - status of process
+        * `SuccessQuery`
+        * `SuccessInsert`
+        * `SuccessDelete`
+        * `SuccessUpdate`
+    * `warning`
+        * null
+    * `error`
+        * null
+    * `data` - Json data response from Api
+        * Object
+    * `timestamp`
+* 400 `Bad Request` - the request could not be understood or was missing required parameters.
+    * `ok` 
+        * `false` mean failed to process
+    * `status` - status of process
+    * `warning` - warning message return from server
+    * `timestamp`
+* 401 `Unauthorized` - authentication failed or user doesn't have 
+permissions for requested operation.
+* 500 `Internal server error` - server error
+
+## Group Stock Sync
+
+### /apps/v1/sync/stock
+
+#### GET
+
+This is api use to synced stock with your preferce e-commerce, by default the 
+sync stock api is only allow to call 4 hours per times and maxinum is only 3
+times within the period.
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": [
+        {
+            "itemCode": "10",
+            "outlet": "090120161",
+            "availableQuantity": 1,
+            "onhandQuantity": 1
+        },
+        {
+            "itemCode": "10011",
+            "outlet": "090120161",
+            "availableQuantity": 0,
+            "onhandQuantity": 0
+        }
+        ]
+    }
+
+### /apps/v1/sync/stock/full
+
+#### GET
+
+This is api use to synced stock with your preferce e-commerce, by default the 
+sync stock api is only allow to call 24 hours per times and maxinum is only 3
+times within the period. This api mainly is use to re-sync all stock at night, 
+so it may take longer time than period sync 
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": [
+        {
+            "itemCode": "10",
+            "outlet": "090120161",
+            "availableQuantity": 1,
+            "onhandQuantity": 1
+        },
+        {
+            "itemCode": "10011",
+            "outlet": "090120161",
+            "availableQuantity": 0,
+            "onhandQuantity": 0
+        }
+        ]
+    }
