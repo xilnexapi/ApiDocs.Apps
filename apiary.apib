@@ -63,15 +63,19 @@ specific for API purpose only`
 permissions for requested operation.
 * 500 `Internal server error` - server error
 
+#Group Sync
+Sync api is use for intergration with your preferce e-commerce, like sync stock, sales, client etc.
+one times the api will only return you 4k row of data only, then will need to make another call to 
+get the rest of data. You will need to keep the last Timestamp and pass to us in your another call,
+so api will return next group of data. 
+
 ## Group Stock Sync
 
 ### /apps/v1/sync/stock
 
 #### GET
 
-This is api use to synced stock with your preferce e-commerce, by default the 
-sync stock api is only allow to call in 4 hours per times and maxinum is only 3
-times within the period.
+This is api use to synced stock with your preferce e-commerce
 
 + Request
 
@@ -90,30 +94,41 @@ times within the period.
     "status": "SuccessQuery",
     "warning": null,
     "error": null,
-    "data": [
-        {
-            "itemCode": "10",
-            "outlet": "090120161",
-            "availableQuantity": 1,
-            "onhandQuantity": 1
-        },
-        {
-            "itemCode": "10011",
-            "outlet": "090120161",
-            "availableQuantity": 0,
-            "onhandQuantity": 0
+    "data": {
+        "lastTimestamp": "0x00000000772C2D62",
+        "stocks": [
+            {
+                "itemCode": "040260354",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "0601401400",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "060160160",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "0603002840",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            }
         }
-        ]
     }
 
-### /apps/v1/sync/stock/full
+### /apps/v1/sync/stock?startTimeStamp={lastTimestamp}
 
 #### GET
 
-This is api use to synced stock with your preferce e-commerce, by default the 
-sync stock api is only allow to call in 24 hours per times and maxinum is only 3
-times within the period. This api mainly is use to re-sync all stock at night, 
-so it may take longer time than period sync 
+This is api use to synced stock with your preferce e-commerce.
 
 + Request
 
@@ -132,18 +147,441 @@ so it may take longer time than period sync
     "status": "SuccessQuery",
     "warning": null,
     "error": null,
-    "data": [
-        {
-            "itemCode": "10",
-            "outlet": "090120161",
-            "availableQuantity": 1,
-            "onhandQuantity": 1
-        },
-        {
-            "itemCode": "10011",
-            "outlet": "090120161",
-            "availableQuantity": 0,
-            "onhandQuantity": 0
+    "data": {
+        "lastTimestamp": "0x00000000772CBC3F",
+        "stocks": [
+            {
+                "itemCode": "070360419",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "0705000980",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "1001016550",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            }
         }
-        ]
+    }
+    
+### /apps/v1/sync/stock?startTimeStamp={lastTimestamp}&endTimeStamp={timestamp}
+
+#### GET
+
+This is api use to synced stock with your preferce e-commerce.
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000772CBC3F",
+        "stocks": [
+            {
+                "itemCode": "070360419",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "0705000980",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "1001016550",
+                "outlet": "A001-ACA",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            }
+        }
+    }
+    
+## Group Client Sync
+
+### /apps/v1/sync/clients
+
+#### GET
+
+This is api use to synced clients with your preferce e-commerce
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000786166CC",
+        "client": null,
+        "clients": [
+            {
+                "id": 9220145,
+                "alternateLookup": "045454",
+                "priceScheme": "-1",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Abu",
+                "code": "",
+                "title": "",
+                "email": "",
+                "type": "Member",
+                "group": "",
+                "registrationCode": "4545454",
+                "gender": "female",
+                "dob": "1995-01-13T00:00:00.000Z",
+                "ic": "",
+                "nationality": null,
+                "createdBy": "01122455",
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-04-24T00:00:00.000Z",
+                "pointValue": 94.85
+            },
+            {
+                "id": 4556545,
+                "alternateLookup": "5454554",
+                "priceScheme": "0",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Ah chin",
+                "code": "45sd416fd6d",
+                "title": "",
+                "email": "asdad56@gmail.com,my",
+                "type": "Member",
+                "group": "Member",
+                "registrationCode": "654sd6f45s",
+                "gender": "F",
+                "dob": "1569-03-02T00:00:00.000Z",
+                "ic": null,
+                "nationality": null,
+                "createdBy": null,
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-06-13T00:00:00.000Z",
+                "pointValue": 526456.07
+            }
+        }
+    }
+
+### /apps/v1/sync/client?startTimeStamp={lastTimestamp}
+
+#### GET
+
+This is api use to synced clients with your preferce e-commerce.
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000786166CC",
+        "client": null,
+        "clients": [
+            {
+                "id": 9220145,
+                "alternateLookup": "045454",
+                "priceScheme": "-1",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Abu",
+                "code": "",
+                "title": "",
+                "email": "",
+                "type": "Member",
+                "group": "",
+                "registrationCode": "4545454",
+                "gender": "female",
+                "dob": "1995-01-13T00:00:00.000Z",
+                "ic": "",
+                "nationality": null,
+                "createdBy": "01122455",
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-04-24T00:00:00.000Z",
+                "pointValue": 94.85
+            },
+            {
+                "id": 4556545,
+                "alternateLookup": "5454554",
+                "priceScheme": "0",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Ah chin",
+                "code": "45sd416fd6d",
+                "title": "",
+                "email": "asdad56@gmail.com,my",
+                "type": "Member",
+                "group": "Member",
+                "registrationCode": "654sd6f45s",
+                "gender": "F",
+                "dob": "1569-03-02T00:00:00.000Z",
+                "ic": null,
+                "nationality": null,
+                "createdBy": null,
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-06-13T00:00:00.000Z",
+                "pointValue": 526456.07
+            }
+        }
+    }
+    
+### /apps/v1/sync/clients?startTimeStamp={lastTimestamp}&endTimeStamp={timestamp}
+
+#### GET
+
+This is api use to synced clients with your preferce e-commerce.
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000786166CC",
+        "client": null,
+        "clients": [
+            {
+                "id": 9220145,
+                "alternateLookup": "045454",
+                "priceScheme": "-1",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Abu",
+                "code": "",
+                "title": "",
+                "email": "",
+                "type": "Member",
+                "group": "",
+                "registrationCode": "4545454",
+                "gender": "female",
+                "dob": "1995-01-13T00:00:00.000Z",
+                "ic": "",
+                "nationality": null,
+                "createdBy": "01122455",
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-04-24T00:00:00.000Z",
+                "pointValue": 94.85
+            },
+            {
+                "id": 4556545,
+                "alternateLookup": "5454554",
+                "priceScheme": "0",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Ah chin",
+                "code": "45sd416fd6d",
+                "title": "",
+                "email": "asdad56@gmail.com,my",
+                "type": "Member",
+                "group": "Member",
+                "registrationCode": "654sd6f45s",
+                "gender": "F",
+                "dob": "1569-03-02T00:00:00.000Z",
+                "ic": null,
+                "nationality": null,
+                "createdBy": null,
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-06-13T00:00:00.000Z",
+                "pointValue": 526456.07
+            }
+        }
     }
