@@ -69,157 +69,19 @@ one times the api will only return you 4k row of data only, then will need to ma
 get the rest of data. You will need to keep the last Timestamp and pass to us in your another call,
 so api will return next group of data. 
 
-* api is on beta after, you may refer to this api for developemnt later on only able to call.
-## Group Stock Sync
+Example
+1. First time call to sync API
+![name](https://s1.postimg.org/tdz2j7kxr/Untitled.png)
 
-### /apps/v1/sync/stock
+2. Return result from sync API, you will need to keep the lastTimestamp for next call
+![name](https://s18.postimg.org/buividotl/Untitled.png)
 
-#### GET
+3. Call APi with the lastTimestamp receive from last call
+![name](https://s10.postimg.org/jxz53v47d/Untitled.png)
 
-This is api use to synced stock with your preferce e-commerce, api will return first 4k row of data.
+4. repreat the step until receive zero row data from API
+![name](https://s3.postimg.org/frhn90mlv/Untitled.png)
 
-+ Request
-
-    + Headers
-
-            Accept: application/json
-            Header: {header}
-            Token: {token}
-
-    + Body
-    
-+ Response 200 (application/json)
-
-    {
-    "ok": true,
-    "status": "SuccessQuery",
-    "warning": null,
-    "error": null,
-    "data": {
-        "lastTimestamp": "0x00000000772C2D62",
-        "stocks": [
-            {
-                "itemCode": "56465as4d",
-                "outlet": "sds-sd",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            },
-            {
-                "itemCode": "wewe",
-                "outlet": "wew-wew",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            },
-            {
-                "itemCode": "qweeqw",
-                "outlet": "asdad-3242",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            },
-            {
-                "itemCode": "234wfer",
-                "outlet": "234242df-2342d",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            }
-        }
-    }
-
-### /apps/v1/sync/stock?startTimeStamp={lastTimestamp}
-
-#### GET
-
-This is api use to synced stock with your preferce e-commerce, api will return you next group of data.
-
-+ Request
-
-    + Headers
-
-            Accept: application/json
-            Header: {header}
-            Token: {token}
-
-    + Body
-    
-+ Response 200 (application/json)
-
-    {
-    "ok": true,
-    "status": "SuccessQuery",
-    "warning": null,
-    "error": null,
-    "data": {
-        "lastTimestamp": "0x00000000772CBC3F",
-        "stocks": [
-            {
-                "itemCode": "e1d12e
-                "outlet": "1231312-sdfs",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            },
-            {
-                "itemCode": "f2
-                "outlet": "asdad-12313",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            },
-            {
-                "itemCode": "asdad",
-                "outlet": "112313-asdad",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            }
-        }
-    }
-    
-### /apps/v1/sync/stock?startTimeStamp={lastTimestamp}&endTimeStamp={timestamp}
-
-#### GET
-
-This is api use to synced stock with your preferce e-commerce, api will return you the data between the 
-start time stamp and end time stamp
-
-+ Request
-
-    + Headers
-
-            Accept: application/json
-            Header: {header}
-            Token: {token}
-
-    + Body
-    
-+ Response 200 (application/json)
-
-    {
-    "ok": true,
-    "status": "SuccessQuery",
-    "warning": null,
-    "error": null,
-    "data": {
-        "lastTimestamp": "0x00000000772CBC3F",
-        "stocks": [
-            {
-                "itemCode": "asdad12",
-                "outlet": "1231sd",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            },
-            {
-                "itemCode": "sdasda
-                "outlet": "12313-asdas",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            },
-            {
-                "itemCode": "adcsdas2",
-                "outlet": "awe-123asdfd",
-                "availableQuantity": 0,
-                "onhandQuantity": 0
-            }
-        }
-    }
-    
 ## Group Client Sync
 
 ### /apps/v1/sync/clients
@@ -344,7 +206,7 @@ This is api use to synced clients with your preferce e-commerce, api will return
         }
     }
 
-### /apps/v1/sync/client?startTimeStamp={lastTimestamp}
+### /apps/v1/sync/clients?startTimeStamp={lastTimestamp}
 
 #### GET
 
@@ -585,6 +447,156 @@ start time stamp and end time stamp
                 "lastName": null,
                 "expiryDate": "2017-06-13T00:00:00.000Z",
                 "pointValue": 526456.07
+            }
+        }
+    }
+    
+## Group Stock Sync
+
+### /apps/v1/sync/stock
+
+#### GET
+
+This is api use to synced stock with your preferce e-commerce, api will return first 4k row of data.
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000772C2D62",
+        "stocks": [
+            {
+                "itemCode": "56465as4d",
+                "outlet": "sds-sd",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "wewe",
+                "outlet": "wew-wew",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "qweeqw",
+                "outlet": "asdad-3242",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "234wfer",
+                "outlet": "234242df-2342d",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            }
+        }
+    }
+
+### /apps/v1/sync/stock?startTimeStamp={lastTimestamp}
+
+#### GET
+
+This is api use to synced stock with your preferce e-commerce, api will return you next group of data.
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000772CBC3F",
+        "stocks": [
+            {
+                "itemCode": "e1d12e
+                "outlet": "1231312-sdfs",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "f2
+                "outlet": "asdad-12313",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "asdad",
+                "outlet": "112313-asdad",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            }
+        }
+    }
+    
+### /apps/v1/sync/stock?startTimeStamp={lastTimestamp}&endTimeStamp={timestamp}
+
+#### GET
+
+This is api use to synced stock with your preferce e-commerce, api will return you the data between the 
+start time stamp and end time stamp
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000772CBC3F",
+        "stocks": [
+            {
+                "itemCode": "asdad12",
+                "outlet": "1231sd",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "sdasda
+                "outlet": "12313-asdas",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "adcsdas2",
+                "outlet": "awe-123asdfd",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
             }
         }
     }
