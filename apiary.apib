@@ -10,7 +10,7 @@ language such as JavaScript, Ruby, Swift, Object-C. C#, Java, php, etc.
 ## Setup for REST API
 For using this API you need send authenticated HTTP requests. Exists several 
 way to do this:
-* Send a HTTP header with include `Token: {api_token}` and `Dkey: {Dkey}`
+* Send a HTTPS header with include `Token: {api_token}` and `Dkey: {Dkey}`
 , where `{api_token}` is your API token and `{dkey}` is your private key
 ![name](https://s15.postimg.org/oagoiyr7f/Screenshot_1.png)
 
@@ -31,6 +31,9 @@ API e-mail address and password `You need to create a user on xilnex application
 specific for API purpose only`
 
 ## Basic Usage
+### HTTPS
+* All endpoints are available over HTTPS only.
+
 ### Allowed HTTPs requests:
 * `POST` - To create resource
 * `PUT` - To update resource
@@ -63,10 +66,6 @@ specific for API purpose only`
 permissions for requested operation.
 * 500 `Internal server error` - server error
 
-### Attributes
-* Date: The standard is called ISO-8601 and the format is: `YYYY-MM-DDTHH:mm:ss.sssZ`
-    * Example: `2017-08-08T08:40:51.000Z`.
-    
 #Group Sync
 Sync api is use for intergration with your preferce e-commerce, like sync stock, sales, client etc.
 one times the api will only return you 4k row of data only, then will need to make another call to 
@@ -81,10 +80,10 @@ Example
 ![name](https://s18.postimg.org/buividotl/Untitled.png)
 
 3. Call APi with the lastTimestamp receive from last call
-![name](https://s11.postimg.org/f5mdy2jyb/Untitled.png)
+![name](https://s10.postimg.org/jxz53v47d/Untitled.png)
 
 4. repreat the step until receive zero row data from API
-![name](https://s17.postimg.org/xks5tg0fj/Untitled.png)
+![name](https://s3.postimg.org/frhn90mlv/Untitled.png)
 
 ## Group Client Sync
 
@@ -332,13 +331,12 @@ This is api use to synced clients with your preferce e-commerce, api will return
         }
     }
     
-## Group Sales Sync
-
-### /apps/v1/sync/sales
+### /apps/v1/sync/clients?startTimeStamp={lastTimestamp}&endTimeStamp={timestamp}
 
 #### GET
 
-This is api use to synced sales with your preferce e-commerce, api will return first 4k row of data.
+This is api use to synced clients with your preferce e-commerce, api will return you the data between the 
+start time stamp and end time stamp
 
 + Request
 
@@ -358,185 +356,111 @@ This is api use to synced sales with your preferce e-commerce, api will return f
     "warning": null,
     "error": null,
     "data": {
-        lastTimestamp:”0x000000006BF8AB50”,
-        "sale": null,
-        "sales": [
-                    {
-                        "id": 23201718,
-                        "dateTime": "2017-06-30T17:51:27.000Z",
-                        "recipientName": null,
-                        "clientId": null,
-                        "clientName": "CASH",
-                        "paid": 49.5,
-                        "balance": 0,
-                        "term": null,
-                        "cashier": "Ooi Boon Jin",
-                        "billingAddress": {
-                            "street": null,
-                            "city": null,
-                            "state": null,
-                            "zipcode": null,
-                            "country": null
-                        },
-                        "shippingAddress": {
-                            "street": null,
-                            "city": null,
-                            "state": null,
-                            "zipcode": null,
-                            "country": null
-                        },
-                        "shippingRemark": null,
-                        "shipmentDateTime": null,
-                        "salesPerson": "Ooi Boon Jin",
-                        "shippingStatus": "NA",
-                        "status": "COMPLETED",
-                        "paymentStatus": "PAID",
-                        "outlet": "090120161",
-                        "confirmOutlet": null,
-                        "remark": "",
-                        "salesType": "Dine In",
-                        "discountPercentage": 0,
-                        "billDiscountAmount": 0,
-                        "taxPercentage": 11,
-                        "cost": 30,
-                        "profit": 16.71,
-                        "rounding": -0.02,
-                        "recipientContact": null,
-                        "netAmount": 49.5,
-                        "grandTotal": 49.5,
-                        "gstTaxAmount": 2.8056,
-                        "exchangeRate": 0,
-                        "foreignTotalAmount": 0,
-                        "currencyCode": null,
-                        "siteId": null,
-                        "reference": null,
-                        "shipmentProvider": null,
-                        "items": [
-                            {
-                                "id": 23202980,
-                                "salesDate": "2017-06-30T00:00:00.000Z",
-                                "itemId": 129020582,
-                                "itemCode": "Food1",
-                                "alternateLookup": "",
-                                "itemName": "Food1",
-                                "itemType": "",
-                                "model": "",
-                                "description": "",
-                                "brand": "",
-                                "unitPrice": 14.15,
-                                "quantity": 1,
-                                "profit": 4.15,
-                                "cost": 10,
-                                "advanceDiscount": null,
-                                "discountPercentage": 0,
-                                "instoreLocation": "default",
-                                "priceSchemes": {
-                                    "manufacturerPrice": 0,
-                                    "salePrice": 15,
-                                    "employeePrice": 0,
-                                    "wholesalePrice": 0,
-                                    "customPrice": 0,
-                                    "webPrice": 0,
-                                    "webDealerPrice": 0,
-                                    "cost": 10
-                                },
-                                "uniqueId": "",
-                                "matrixId": "",
-                                "matrixBarcode": "",
-                                "matrixX": "",
-                                "matrixY": "",
-                                "salesPerson": "Ooi Boon Jin",
-                                "subtotal": 15,
-                                "taxCode": "SR",
-                                "gstPercentage": 6,
-                                "gstAmount": 0.85,
-                                "gstInclusive": true,
-                                "enterPrice": 15,
-                                "scanCode": "",
-                                "remark": null,
-                                "deliveryQuantity": 0,
-                                "subItems": null
-                            },
-                            {
-                                "id": 23202981,
-                                "salesDate": "2017-06-30T00:00:00.000Z",
-                                "itemId": 129020583,
-                                "itemCode": "Food2",
-                                "alternateLookup": "",
-                                "itemName": "Food2",
-                                "itemType": "1",
-                                "model": "",
-                                "description": "",
-                                "brand": "",
-                                "unitPrice": 14.15,
-                                "quantity": 1,
-                                "profit": 4.15,
-                                "cost": 10,
-                                "advanceDiscount": null,
-                                "discountPercentage": 0,
-                                "instoreLocation": "default",
-                                "priceSchemes": {
-                                    "manufacturerPrice": 0,
-                                    "salePrice": 15,
-                                    "employeePrice": 0,
-                                    "wholesalePrice": 0,
-                                    "customPrice": 0,
-                                    "webPrice": 0,
-                                    "webDealerPrice": 0,
-                                    "cost": 10
-                                },
-                                "uniqueId": "",
-                                "matrixId": "",
-                                "matrixBarcode": "",
-                                "matrixX": "",
-                                "matrixY": "",
-                                "salesPerson": "Ooi Boon Jin",
-                                "subtotal": 15,
-                                "taxCode": "SR",
-                                "gstPercentage": 6,
-                                "gstAmount": 0.85,
-                                "gstInclusive": true,
-                                "enterPrice": 15,
-                                "scanCode": "",
-                                "remark": null,
-                                "deliveryQuantity": 0,
-                                "subItems": null
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "amount": 49.5,
-                                "reference": null,
-                                "method": "cash",
-                                "id": 23201686,
-                                "clientID": "",
-                                "invoiceID": "23201718",
-                                "outlet": "090120161",
-                                "availableBalance": 0,
-                                "remarks": null,
-                                "salesOrderId": null,
-                                "isDeposit": false
-                            }
-                        ],
-                        "cancelBy": null,
-                        "cancelRemark": null,
-                        "cancelOutlet": null,
-                        "cancelDateTime": null
-                    }
-                ]
-
-        "key": null,
-        "status": null
-        },
-        "timestamp": 1499393494
+        "lastTimestamp": "0x00000000786166CC",
+        "client": null,
+        "clients": [
+            {
+                "id": 9220145,
+                "alternateLookup": "045454",
+                "priceScheme": "-1",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Abu",
+                "code": "",
+                "title": "",
+                "email": "",
+                "type": "Member",
+                "group": "",
+                "registrationCode": "4545454",
+                "gender": "female",
+                "dob": "1995-01-13T00:00:00.000Z",
+                "ic": "",
+                "nationality": null,
+                "createdBy": "01122455",
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-04-24T00:00:00.000Z",
+                "pointValue": 94.85
+            },
+            {
+                "id": 4556545,
+                "alternateLookup": "5454554",
+                "priceScheme": "0",
+                "terms": 0,
+                "creditLimit": 0,
+                "billingAddress": "",
+                "shippingAddress": "",
+                "billing": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "shipping": {
+                    "street": "",
+                    "city": "",
+                    "state": "",
+                    "zipcode": "",
+                    "country": ""
+                },
+                "name": "Ah chin",
+                "code": "45sd416fd6d",
+                "title": "",
+                "email": "asdad56@gmail.com,my",
+                "type": "Member",
+                "group": "Member",
+                "registrationCode": "654sd6f45s",
+                "gender": "F",
+                "dob": "1569-03-02T00:00:00.000Z",
+                "ic": null,
+                "nationality": null,
+                "createdBy": null,
+                "mobile": null,
+                "office": null,
+                "fax": null,
+                "phone": null,
+                "alternateContact": null,
+                "alternatePhone": null,
+                "category": null,
+                "firstName": null,
+                "lastName": null,
+                "expiryDate": "2017-06-13T00:00:00.000Z",
+                "pointValue": 526456.07
+            }
+        }
     }
+    
+    ## Group Client Sync
 
-
-### /apps/v1/sync/sales?startTimeStamp={lastTimestamp}
+### /apps/v1/sync/Items
 
 #### GET
 
-This is api use to synced sales with your preferce e-commerce, api will return you next group of data.
+This is api use to synced Items with your preferce e-commerce, api will return first 4k row of data.
 
 + Request
 
@@ -550,183 +474,239 @@ This is api use to synced sales with your preferce e-commerce, api will return y
     
 + Response 200 (application/json)
 
-        {
-    "ok": true,
-    "status": "SuccessQuery",
-    "warning": null,
-    "error": null,
-    "data": {
-        lastTimestamp:”0x000000006BF8AB50”,
-        "sale": null,
-        "sales": [
-                    {
-                        "id": 23201718,
-                        "dateTime": "2017-06-30T17:51:27.000Z",
-                        "recipientName": null,
-                        "clientId": null,
-                        "clientName": "CASH",
-                        "paid": 49.5,
-                        "balance": 0,
-                        "term": null,
-                        "cashier": "Ooi Boon Jin",
-                        "billingAddress": {
-                            "street": null,
-                            "city": null,
-                            "state": null,
-                            "zipcode": null,
-                            "country": null
-                        },
-                        "shippingAddress": {
-                            "street": null,
-                            "city": null,
-                            "state": null,
-                            "zipcode": null,
-                            "country": null
-                        },
-                        "shippingRemark": null,
-                        "shipmentDateTime": null,
-                        "salesPerson": "Ooi Boon Jin",
-                        "shippingStatus": "NA",
-                        "status": "COMPLETED",
-                        "paymentStatus": "PAID",
-                        "outlet": "090120161",
-                        "confirmOutlet": null,
-                        "remark": "",
-                        "salesType": "Dine In",
-                        "discountPercentage": 0,
-                        "billDiscountAmount": 0,
-                        "taxPercentage": 11,
-                        "cost": 30,
-                        "profit": 16.71,
-                        "rounding": -0.02,
-                        "recipientContact": null,
-                        "netAmount": 49.5,
-                        "grandTotal": 49.5,
-                        "gstTaxAmount": 2.8056,
-                        "exchangeRate": 0,
-                        "foreignTotalAmount": 0,
-                        "currencyCode": null,
-                        "siteId": null,
-                        "reference": null,
-                        "shipmentProvider": null,
-                        "items": [
-                            {
-                                "id": 23202980,
-                                "salesDate": "2017-06-30T00:00:00.000Z",
-                                "itemId": 129020582,
-                                "itemCode": "Food1",
-                                "alternateLookup": "",
-                                "itemName": "Food1",
-                                "itemType": "",
-                                "model": "",
-                                "description": "",
-                                "brand": "",
-                                "unitPrice": 14.15,
-                                "quantity": 1,
-                                "profit": 4.15,
-                                "cost": 10,
-                                "advanceDiscount": null,
-                                "discountPercentage": 0,
-                                "instoreLocation": "default",
-                                "priceSchemes": {
-                                    "manufacturerPrice": 0,
-                                    "salePrice": 15,
-                                    "employeePrice": 0,
-                                    "wholesalePrice": 0,
-                                    "customPrice": 0,
-                                    "webPrice": 0,
-                                    "webDealerPrice": 0,
-                                    "cost": 10
-                                },
-                                "uniqueId": "",
-                                "matrixId": "",
-                                "matrixBarcode": "",
-                                "matrixX": "",
-                                "matrixY": "",
-                                "salesPerson": "Ooi Boon Jin",
-                                "subtotal": 15,
-                                "taxCode": "SR",
-                                "gstPercentage": 6,
-                                "gstAmount": 0.85,
-                                "gstInclusive": true,
-                                "enterPrice": 15,
-                                "scanCode": "",
-                                "remark": null,
-                                "deliveryQuantity": 0,
-                                "subItems": null
-                            },
-                            {
-                                "id": 23202981,
-                                "salesDate": "2017-06-30T00:00:00.000Z",
-                                "itemId": 129020583,
-                                "itemCode": "Food2",
-                                "alternateLookup": "",
-                                "itemName": "Food2",
-                                "itemType": "1",
-                                "model": "",
-                                "description": "",
-                                "brand": "",
-                                "unitPrice": 14.15,
-                                "quantity": 1,
-                                "profit": 4.15,
-                                "cost": 10,
-                                "advanceDiscount": null,
-                                "discountPercentage": 0,
-                                "instoreLocation": "default",
-                                "priceSchemes": {
-                                    "manufacturerPrice": 0,
-                                    "salePrice": 15,
-                                    "employeePrice": 0,
-                                    "wholesalePrice": 0,
-                                    "customPrice": 0,
-                                    "webPrice": 0,
-                                    "webDealerPrice": 0,
-                                    "cost": 10
-                                },
-                                "uniqueId": "",
-                                "matrixId": "",
-                                "matrixBarcode": "",
-                                "matrixX": "",
-                                "matrixY": "",
-                                "salesPerson": "Ooi Boon Jin",
-                                "subtotal": 15,
-                                "taxCode": "SR",
-                                "gstPercentage": 6,
-                                "gstAmount": 0.85,
-                                "gstInclusive": true,
-                                "enterPrice": 15,
-                                "scanCode": "",
-                                "remark": null,
-                                "deliveryQuantity": 0,
-                                "subItems": null
-                            }
-                        ],
-                        "collection": [
-                            {
-                                "amount": 49.5,
-                                "reference": null,
-                                "method": "cash",
-                                "id": 23201686,
-                                "clientID": "",
-                                "invoiceID": "23201718",
-                                "outlet": "090120161",
-                                "availableBalance": 0,
-                                "remarks": null,
-                                "salesOrderId": null,
-                                "isDeposit": false
-                            }
-                        ],
-                        "cancelBy": null,
-                        "cancelRemark": null,
-                        "cancelOutlet": null,
-                        "cancelDateTime": null
-                    }
-                ]
+    {  
+       "ok":true,
+       "status":"SuccessQuery",
+       "warning":null,
+       "error":null,
+       "data":{  
+          "item":null,
+          "items":[  
+             {  
+                "id":988013128,
+                "itemCode":"988013128",
+                "itemName":"TestItemName  task:0counter0",
+                "itemType":"",
+                "itemModel":"",
+                "alternateLookup":"",
+                "description":"",
+                "brand":"",
+                "category":"",
+                "departmentCode":"",
+                "departmentName":null,
+                "vendorCode":"",
+                "cost":0,
+                "suggestedPrice":0,
+                "salesPrice":0,
+                "employeePrice":0,
+                "wholesalesPrice":0,
+                "customPrice":0,
+                "webPrice":0,
+                "webDealerPrice":0,
+                "attribute":"",
+                "size":"",
+                "stockType":null,
+                "matrixXGroup":null,
+                "matrixYGroup":null,
+                "groupName":"",
+                "promotionGroup":"",
+                "customField1":"",
+                "customField2":"",
+                "customField3":"",
+                "customField4":"",
+                "customField5":"",
+                "customField6":"",
+                "customField7":"",
+                "customField8":"",
+                "customField9":"",
+                "customField10":"",
+                "customField11":"",
+                "customField12":"",
+                "customField13":"",
+                "customField14":"",
+                "customField15":"",
+                "gstRate":0,
+                "gstSupplyCode":"",
+                "gstPurchaseCode":"",
+                "image":null,
+                "sellingPrice":0,
+                "productMatrixInfo":null,
+                "uniqueItemInfo":null,
+                "subItems":null
+             }
+          ],
+          "lastTimestamp":""
+       },
+       "timestamp":1505969472
+    }
 
-        "key": null,
-        "status": null
-        },
-        "timestamp": 1499393494
+### /apps/v1/sync/Items?startTimeStamp={lastTimestamp}
+
+#### GET
+
+This is api use to synced Items with your preferce e-commerce, api will return you next group of data.
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {  
+       "ok":true,
+       "status":"SuccessQuery",
+       "warning":null,
+       "error":null,
+       "data":{  
+          "item":null,
+          "items":[  
+             {  
+                "id":988013128,
+                "itemCode":"988013128",
+                "itemName":"TestItemName  task:0counter0",
+                "itemType":"",
+                "itemModel":"",
+                "alternateLookup":"",
+                "description":"",
+                "brand":"",
+                "category":"",
+                "departmentCode":"",
+                "departmentName":null,
+                "vendorCode":"",
+                "cost":0,
+                "suggestedPrice":0,
+                "salesPrice":0,
+                "employeePrice":0,
+                "wholesalesPrice":0,
+                "customPrice":0,
+                "webPrice":0,
+                "webDealerPrice":0,
+                "attribute":"",
+                "size":"",
+                "stockType":null,
+                "matrixXGroup":null,
+                "matrixYGroup":null,
+                "groupName":"",
+                "promotionGroup":"",
+                "customField1":"",
+                "customField2":"",
+                "customField3":"",
+                "customField4":"",
+                "customField5":"",
+                "customField6":"",
+                "customField7":"",
+                "customField8":"",
+                "customField9":"",
+                "customField10":"",
+                "customField11":"",
+                "customField12":"",
+                "customField13":"",
+                "customField14":"",
+                "customField15":"",
+                "gstRate":0,
+                "gstSupplyCode":"",
+                "gstPurchaseCode":"",
+                "image":null,
+                "sellingPrice":0,
+                "productMatrixInfo":null,
+                "uniqueItemInfo":null,
+                "subItems":null
+             }
+          ],
+          "lastTimestamp":""
+       },
+       "timestamp":1505969472
+    }
+    
+### /apps/v1/sync/Items?startTimeStamp={lastTimestamp}&endTimeStamp={timestamp}
+
+#### GET
+
+This is api use to synced Items with your preferce e-commerce, api will return you the data between the 
+start time stamp and end time stamp
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {  
+       "ok":true,
+       "status":"SuccessQuery",
+       "warning":null,
+       "error":null,
+       "data":{  
+          "item":null,
+          "items":[  
+             {  
+                "id":988013128,
+                "itemCode":"988013128",
+                "itemName":"TestItemName  task:0counter0",
+                "itemType":"",
+                "itemModel":"",
+                "alternateLookup":"",
+                "description":"",
+                "brand":"",
+                "category":"",
+                "departmentCode":"",
+                "departmentName":null,
+                "vendorCode":"",
+                "cost":0,
+                "suggestedPrice":0,
+                "salesPrice":0,
+                "employeePrice":0,
+                "wholesalesPrice":0,
+                "customPrice":0,
+                "webPrice":0,
+                "webDealerPrice":0,
+                "attribute":"",
+                "size":"",
+                "stockType":null,
+                "matrixXGroup":null,
+                "matrixYGroup":null,
+                "groupName":"",
+                "promotionGroup":"",
+                "customField1":"",
+                "customField2":"",
+                "customField3":"",
+                "customField4":"",
+                "customField5":"",
+                "customField6":"",
+                "customField7":"",
+                "customField8":"",
+                "customField9":"",
+                "customField10":"",
+                "customField11":"",
+                "customField12":"",
+                "customField13":"",
+                "customField14":"",
+                "customField15":"",
+                "gstRate":0,
+                "gstSupplyCode":"",
+                "gstPurchaseCode":"",
+                "image":null,
+                "sellingPrice":0,
+                "productMatrixInfo":null,
+                "uniqueItemInfo":null,
+                "subItems":null
+             }
+          ],
+          "lastTimestamp":""
+       },
+       "timestamp":1505969472
     }
     
 ## Group Stock Sync
@@ -825,6 +805,54 @@ This is api use to synced stock with your preferce e-commerce, api will return y
             {
                 "itemCode": "asdad",
                 "outlet": "112313-asdad",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            }
+        }
+    }
+    
+### /apps/v1/sync/stock?startTimeStamp={lastTimestamp}&endTimeStamp={timestamp}
+
+#### GET
+
+This is api use to synced stock with your preferce e-commerce, api will return you the data between the 
+start time stamp and end time stamp
+
++ Request
+
+    + Headers
+
+            Accept: application/json
+            Header: {header}
+            Token: {token}
+
+    + Body
+    
++ Response 200 (application/json)
+
+    {
+    "ok": true,
+    "status": "SuccessQuery",
+    "warning": null,
+    "error": null,
+    "data": {
+        "lastTimestamp": "0x00000000772CBC3F",
+        "stocks": [
+            {
+                "itemCode": "asdad12",
+                "outlet": "1231sd",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "sdasda
+                "outlet": "12313-asdas",
+                "availableQuantity": 0,
+                "onhandQuantity": 0
+            },
+            {
+                "itemCode": "adcsdas2",
+                "outlet": "awe-123asdfd",
                 "availableQuantity": 0,
                 "onhandQuantity": 0
             }
